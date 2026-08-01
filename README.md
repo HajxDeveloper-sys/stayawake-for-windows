@@ -1,11 +1,11 @@
-# 🛡️ Uyanık Kal / Stay Awake - Windows Uyku ve Ekran Kapanma Önleyici (Python 3.12)
+# 🛡️ Stay Awake - Windows Sleep and Screen Timeout Preventer (Python 3.12)
 
 <p align="center">
-  <img src="assets/icon.png" width="128" height="128" alt="Uyanık Kal Logo">
+  <img src="assets/icon.png" width="128" height="128" alt="Stay Awake Logo">
   <br>
-  <b>Kişi aktif ederse bilgisayarınız siz kapatana kadar (ister 100.000.000.000 dakika bakmayın) ASLA kapanmaz veya uykuya girmez!</b>
+  <b>When enabled, keeps your computer continuously active and prevents it from turning off or entering sleep mode until manually disabled.</b>
   <br>
-  <sub><b>Creator / Geliştirici: Hasan Aras DEMİR</b> • Copyright © 2026 Hasan Aras DEMİR. All Rights Reserved.</sub>
+  <sub><b>Creator / Developer: Hasan Aras DEMİR</b> • Copyright © 2026 Hasan Aras DEMİR. All Rights Reserved.</sub>
 </p>
 
 <p align="center">
@@ -18,124 +18,124 @@
 
 ---
 
-## 📚 Dokümantasyon İndeksi (Documentation Index)
+## 📚 Documentation Index
 
-- 🛡️ **[SECURITY.md](SECURITY.md)**: Güvenlik politikası, sıfır-ağ bağımlılığı ve bildirim kılavuzu.
-- 🏗️ **[ARCHITECTURE.md](ARCHITECTURE.md)**: Win32 Power API, `SleepPreventer` mimarisi ve thread yapısı.
-- ❓ **[FAQ.md](FAQ.md)**: Sıkça sorulan sorular ve sorun giderme (Troubleshooting) kılavuzu.
-- 🤝 **[CONTRIBUTING.md](CONTRIBUTING.md)**: Katkıda bulunma ve geliştirici rehberi.
-- 📜 **[CHANGELOG.md](CHANGELOG.md)**: Sürüm geçmişi (v1.1.0).
-- ⚖️ **[LICENSE](LICENSE)**: MIT Lisans şartları ve telif hakkı bildirimi (Hasan Aras DEMİR).
-- 🤝 **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)**: Topluluk davranışı kuralları.
+- 🛡️ **[SECURITY.md](SECURITY.md)**: Security policy, zero-network dependency, and vulnerability disclosure guide.
+- 🏗️ **[ARCHITECTURE.md](ARCHITECTURE.md)**: Win32 Power API integration, `SleepPreventer` architecture, and threading model.
+- ❓ **[FAQ.md](FAQ.md)**: Frequently asked questions and troubleshooting guide.
+- 🤝 **[CONTRIBUTING.md](CONTRIBUTING.md)**: Guidelines for contributing and developer workflow.
+- 📜 **[CHANGELOG.md](CHANGELOG.md)**: Version history and release notes (v1.1.0).
+- ⚖️ **[LICENSE](LICENSE)**: MIT License terms and copyright notice (Hasan Aras DEMİR).
+- 🤝 **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)**: Community standards and code of conduct.
 
 ---
 
-## 📌 Proje Hakkında (About The Project)
+## 📌 About The Project
 
-**Uyanık Kal / Stay Awake**, uzun süreli indirmeler, render alma süreçleri, sunucu testleri veya bilgisayar başında olunmayan uzun saatlerde sistemin uyku moduna girmesini, ekranın kararmasını veya Windows'un kilitlenmesini engelleyen açık kaynaklı, modern bir Python 3.12 uygulamasıdır.
+**Stay Awake** is an open-source Python 3.12 application designed to prevent Windows systems from entering sleep mode, turning off the display, or locking during long downloads, rendering tasks, server tests, or extended unattended operations.
 
-**Creator / Geliştirici**: Hasan Aras DEMİR
+**Creator / Developer**: Hasan Aras DEMİR
 
 ```mermaid
 graph TD
-    A[Uyanık Kal GUI Arayüzü] -->|Aktif Et| B[SleepPreventer Yöneticisi]
+    A[Stay Awake GUI Interface] -->|Enable| B[SleepPreventer Manager]
     B -->|ctypes API| C[Windows Kernel: SetThreadExecutionState]
-    B -->|Arka Plan Daemon| D[Periodic Re-assertion & 45s Micro Heartbeat]
-    C --> E[PC Uykusuz ve Kesintisiz Çalışır]
+    B -->|Background Daemon| D[Periodic Re-assertion & 45s Micro Heartbeat]
+    C --> E[PC Remains Active & Uninterrupted]
 ```
 
-### 🌟 Öne Çıkan Özellikler
+### 🌟 Key Features
 
-- ⚡ **Windows Native Power API**: Farenizi hareket ettirip ekrandaki çalışmanızı bozmak yerine, işletim sistemine doğrudan Windows Kernel (`SetThreadExecutionState`) düzeyinde "Uyanık Kal" sinyali gönderir.
-- 🔄 **Kesintisiz Periyodik Yenileme**: Arka plan thread'i her 15 saniyede bir güç durumunu tekrar onaylayarak %100 uyanık kalma garantisi sunar.
-- ⏱️ **Canlı Süre Sayacı**: Uygulama aktif olduğu sürece bilgisayarın kaç saattir/dakikadır kesintisiz uyanık tutulduğunu canlı gösterir (`00:00:00`).
-- 🔘 **Tek Tıkla Aç/Kapat (Toggle)**: Yeşil butonla korumayı başlatabilir, dilediğiniz zaman kırmızı butonla tek tıkta durdurabilirsiniz.
-- 🎨 **Modern Cyber Dark Tema & İkon**: Yüksek çözünürlüklü özel ikon tasarımı, canlı durum rozeti ve karanlık arayüz stili.
-- ⚙️ **Esnek Koruma Ayarları**:
-  - `Ekranın Kapanmasını Engelle`
-  - `Sistemin Uykuna Girmesini Engelle`
-  - `Arka Plan Fare Heartbeat Sinyali (Odağı bozmayan mikro sinyal)`
+- ⚡ **Windows Native Power API**: Communicates directly with the Windows Kernel (`SetThreadExecutionState`) to maintain active power states without moving the visible mouse cursor or interrupting user workflow.
+- 🔄 **Periodic Power Refresh**: A background thread continuously re-asserts the power state every 15 seconds to ensure system stability.
+- ⏱️ **Live Uptime Counter**: Displays a real-time counter (`00:00:00`) tracking how long the system has been kept active continuously.
+- 🔘 **One-Click Control**: Easily start or stop protection at any time via simple toggle controls.
+- 🎨 **Modern Cyber Dark UI**: Clean dark interface featuring custom high-resolution icons and live status indicators.
+- ⚙️ **Configurable Protection Settings**:
+  - `Prevent Display Sleep`
+  - `Prevent System Sleep`
+  - `Background Mouse Heartbeat Signal (Focus-friendly micro signal)`
 
 ---
 
-## 🚀 Hızlı Başlangıç (Quick Start)
+## 🚀 Quick Start
 
-### Yöntem 1: Çift Tıklayarak Çalıştırma (Önerilen)
+### Method 1: Automated Script Execution (Recommended)
 
-1. Depoyu klonlayın veya ZIP olarak indirin:
+1. Clone the repository or download as ZIP:
    ```bash
    git clone https://github.com/HajxDeveloper-sys/stayawake-for-pc.git
    cd stayawake-for-pc
    ```
-2. **Kurulum**: Bağımlılıkları ve sanal ortamı (`venv`) kurmak için `install.bat` veya `install.ps1` dosyasına çift tıklayın.
-3. **Çalıştırma**: Uygulamayı başlatmak için `run.bat` veya `run.ps1` dosyasına çift tıklayın!
+2. **Installation**: Run `install.bat` or `install.ps1` to automatically install dependencies and configure the virtual environment (`venv`).
+3. **Run**: Run `run.bat` or `run.ps1` to launch the application.
 
 ---
 
-### Yöntem 2: Manuel Kurulum (Komut Satırı)
+### Method 2: Manual Installation (Command Line)
 
 ```bash
-# Sanal ortam oluşturun
+# Create a virtual environment
 python -m venv venv
 
-# Sanal ortamı aktif edin (Windows Command Prompt)
+# Activate the virtual environment (Windows Command Prompt)
 venv\Scripts\activate
 
-# Gerekli kütüphaneleri yükleyin
+# Install required dependencies
 pip install -r requirements.txt
 
-# Uygulamayı başlatın
+# Launch the application
 python main.py
 ```
 
 ---
 
-## 📁 Proje Dizin Yapısı (Directory Structure)
+## 📁 Directory Structure
 
 ```text
 stayawake-for-pc/
 ├── .github/
 │   ├── ISSUE_TEMPLATE/
-│   │   ├── bug_report.md       # Hata bildirim şablonu
-│   │   └── feature_request.md  # Özellik istek şablonu
+│   │   ├── bug_report.md       # Bug report template
+│   │   └── feature_request.md  # Feature request template
 │   ├── workflows/
-│   │   ├── codeql.yml          # CodeQL SAST taraması
-│   │   └── security-scan.yml   # Bandit & Pip-Audit taraması
-│   ├── dependabot.yml          # Otomatik bağımlılık güncelleyicisi
+│   │   ├── codeql.yml          # CodeQL SAST scan workflow
+│   │   └── security-scan.yml   # Bandit & Pip-Audit security scan workflow
+│   ├── dependabot.yml          # Automated dependency updater configuration
 │   └── PULL_REQUEST_TEMPLATE.md
 ├── assets/
-│   ├── icon.ico                # Windows uygulama ikonu
-│   └── icon.png                # PNG formatlı ikon
-├── .gitignore                  # Güçlendirilmiş Git ignore politikası
-├── ARCHITECTURE.md             # Teknik mimari ve Win32 API dokümantasyonu
-├── CHANGELOG.md                # Sürüm değişiklik geçmişi (v1.1.0)
-├── CODE_OF_CONDUCT.md          # Katkı topluluk kuralları
-├── CONTRIBUTING.md             # Katkıda bulunma kılavuzu
-├── FAQ.md                      # Sıkça sorulan sorular & Sorun giderme
-├── install.bat                 # Otomatik kurucu (Batch)
-├── install.ps1                 # Otomatik kurucu (PowerShell)
-├── LICENSE                     # MIT Lisans belgesi (Hasan Aras DEMİR)
-├── main.py                     # Ana Python uygulama kodu
-├── README.md                   # Ana proje dokümantasyonu
-├── requirements.txt            # Python çalışma bağımlılıkları (Pillow)
-├── requirements-dev.txt        # Geliştirme & güvenlik test bağımlılıkları
-├── run.bat                     # Tek tıkla başlatıcı (Batch)
-├── run.ps1                     # Tek tıkla başlatıcı (PowerShell)
-├── SECURITY.md                 # Güvenlik ve gizlilik politikası
-├── SECURITY_ARCHITECTURE.md    # 7 Katmanlı siber güvenlik dokümanı
-├── security.py                 # Siber güvenlik & Anti-DDoS motoru
-└── test_security.py            # Güvenlik test paketi
+│   ├── icon.ico                # Windows application icon
+│   └── icon.png                # PNG format application icon
+├── .gitignore                  # Hardened Git ignore policy
+├── ARCHITECTURE.md             # Technical architecture & Win32 API documentation
+├── CHANGELOG.md                # Version release history (v1.1.0)
+├── CODE_OF_CONDUCT.md          # Community code of conduct guidelines
+├── CONTRIBUTING.md             # Developer contribution guide
+├── FAQ.md                      # Frequently asked questions & troubleshooting guide
+├── install.bat                 # Automatic installation script (Batch)
+├── install.ps1                 # Automatic installation script (PowerShell)
+├── LICENSE                     # MIT License agreement (Hasan Aras DEMİR)
+├── main.py                     # Main Python application entry point
+├── README.md                   # Primary project documentation
+├── requirements.txt            # Python runtime dependencies (Pillow)
+├── requirements-dev.txt        # Development & security testing dependencies
+├── run.bat                     # Application launcher script (Batch)
+├── run.ps1                     # Application launcher script (PowerShell)
+├── SECURITY.md                 # Security & privacy policy
+├── SECURITY_ARCHITECTURE.md    # 7-Layer cybersecurity architecture document
+├── security.py                 # Security & Anti-DDoS engine
+└── test_security.py            # Security test suite
 ```
 
 ---
 
-## 🔒 Güvenlik & Gizlilik (Security & Privacy)
+## 🔒 Security & Privacy
 
-**Uyanık Kal / Stay Awake** %100 yerel (offline) çalışır. Hiçbir telemetry, veri toplama veya internet erişimi yapmaz. Detaylar için **[SECURITY.md](SECURITY.md)** ve **[SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md)** dosyalarını inceleyebilirsiniz.
+**Stay Awake** operates 100% locally and offline. It contains no telemetry, data collection, or external network requests. For detailed security specifications, please see **[SECURITY.md](SECURITY.md)** and **[SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md)**.
 
 ---
 
-## 📜 Lisans & Telif Hakkı (License & Copyright)
+## 📜 License & Copyright
 
-Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.  
-**Copyright © 2026 Hasan Aras DEMİR. Tüm Hakları Hasan Aras DEMİR Tarafından Korunmaktadır.**
+This project is licensed under the [MIT License](LICENSE).  
+**Copyright © 2026 Hasan Aras DEMİR. All Rights Reserved.**
