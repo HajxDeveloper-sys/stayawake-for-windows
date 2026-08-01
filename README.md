@@ -20,6 +20,7 @@
 
 ## 📚 Documentation Index
 
+- 🐍 **[PYTHON_KURULUM.md](PYTHON_KURULUM.md)**: Python kurulumu ve PATH ayarı rehberi.
 - 🛡️ **[SECURITY.md](SECURITY.md)**: Security policy, zero-network dependency, and vulnerability disclosure guide.
 - 🏗️ **[ARCHITECTURE.md](ARCHITECTURE.md)**: Win32 Power API integration, `SleepPreventer` architecture, and threading model.
 - ❓ **[FAQ.md](FAQ.md)**: Frequently asked questions and troubleshooting guide.
@@ -115,8 +116,9 @@ stayawake-for-pc/
 ├── install.bat                 # Automatic installation script (Batch)
 ├── install.ps1                 # Automatic installation script (PowerShell)
 ├── LICENSE                     # MIT License agreement (Hasan Aras DEMİR)
-├── main.py                     # Main Python application entry point
-├── README.md                   # Primary project documentation
+├── main.py                     # Ana Python uygulama kodu
+├── PYTHON_KURULUM.md           # Python kurulum rehberi (TR/EN)
+├── README.md                   # Ana proje dokümantasyonu
 ├── requirements.txt            # Python runtime dependencies (Pillow)
 ├── requirements-dev.txt        # Development & security testing dependencies
 ├── run.bat                     # Application launcher script (Batch)
