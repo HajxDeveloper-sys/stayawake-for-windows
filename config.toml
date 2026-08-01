@@ -1,0 +1,32 @@
+# ==========================================
+# StayAwake PC - Configuration Settings
+# ==========================================
+
+[ui]
+# Show the "Reset Timer / Süreyi Sıfırla" button in GUI (true / false)
+show_reset_button = true
+
+# Default interface language ("TR" or "EN")
+default_language = "TR"
+
+# Window resizability (true / false)
+allow_resizable = true
+
+[protection]
+# Default checkbox states on startup
+default_keep_display = true
+default_keep_system = true
+default_virtual_heartbeat = true
+
+[security]
+# Enable Anti-DDoS rate limiting protection against event spamming & flood attacks
+rate_limit_enabled = true
+
+# Maximum token burst capacity for rapid UI actions
+max_burst_capacity = 10
+
+# Token refill rate per second
+refill_rate_per_sec = 2.0
+
+# Prevent multiple process instances (Local DoS / Process Flooding protection)
+single_instance_only = true

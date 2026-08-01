@@ -1,0 +1,8 @@
+# ==========================================
+# StayAwake PC - Development & Security Testing Dependencies
+# ==========================================
+# These are NOT required to run the application.
+# Install with: pip install -r requirements-dev.txt
+
+bandit>=1.7.8
+pip-audit>=2.7.3
