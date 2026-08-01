@@ -20,7 +20,7 @@
 
 ## 📚 Documentation Index
 
-- 🐍 **[PYTHON_KURULUM.md](PYTHON_KURULUM.md)**: Python kurulumu ve PATH ayarı rehberi.
+- 🐍 **[PYTHON_KURULUM.md](PYTHON_KURULUM.md)**: Guide to Python installation and PATH configuration.
 - 🛡️ **[SECURITY.md](SECURITY.md)**: Security policy, zero-network dependency, and vulnerability disclosure guide.
 - 🏗️ **[ARCHITECTURE.md](ARCHITECTURE.md)**: Win32 Power API integration, `SleepPreventer` architecture, and threading model.
 - ❓ **[FAQ.md](FAQ.md)**: Frequently asked questions and troubleshooting guide.
