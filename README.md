@@ -117,7 +117,7 @@ stayawake-for-pc/
 ├── install.ps1                 # Automatic installation script (PowerShell)
 ├── LICENSE                     # MIT License agreement (Hasan Aras DEMİR)
 ├── main.py                     # Ana Python uygulama kodu
-├── PYTHON_KURULUM.md           # Python kurulum rehberi (TR/EN)
+├── PYTHON_INSTALLATION.md      # Python kurulum rehberi (TR/EN)
 ├── README.md                   # Ana proje dokümantasyonu
 ├── requirements.txt            # Python runtime dependencies (Pillow)
 ├── requirements-dev.txt        # Development & security testing dependencies
