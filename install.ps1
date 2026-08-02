@@ -29,8 +29,9 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "Launching run.ps1 automatically..." -ForegroundColor Green
     Write-Host "===================================================" -ForegroundColor Green
     Start-Process powershell.exe -ArgumentList "-File .\run.ps1"
-    Remove-Item -Path $PSCommandPath -Force -ErrorAction SilentlyContinue
+    exit 0
 } else {
     Write-Host "`n[ERROR] An error occurred during library installation." -ForegroundColor Red
     Read-Host "Press Enter to continue..."
+    exit 1
 }
