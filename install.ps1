@@ -1,40 +1,36 @@
-@echo off
-title StayAwake PC - Install Script
-echo ===================================================
-echo   StayAwake PC - Dependency Installer
-echo ===================================================
-echo.
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -ErrorAction SilentlyContinue
 
-python --version >nul 2>&1
-if %errorlevel% neq 0 (
-    echo [ERROR] Python not found! Please install Python 3.12 or later.
-    pause
-    exit /b 1
-)
+Write-Host "===================================================" -ForegroundColor Cyan
+Write-Host "   StayAwake PC - Dependency Installer" -ForegroundColor Cyan
+Write-Host "===================================================" -ForegroundColor Cyan
+Write-Host ""
 
-echo Python detected. Installing required libraries...
-if exist "venv\Scripts\python.exe" (
-    echo The existing virtual environment is being used...
-    venv\Scripts\python.exe -m pip install --upgrade pip
-    venv\Scripts\python.exe -m pip install -r requirements.txt
-) else (
-    echo Creating a new virtual environment venv...
+if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
+    Write-Host "[ERROR] Python not found! Please install Python 3.12 or later." -ForegroundColor Red
+    Read-Host "Press Enter to exit..."
+    exit 1
+}
+
+Write-Host "Python detected. Installing required libraries..." -ForegroundColor Yellow
+
+if (Test-Path "venv\Scripts\python.exe") {
+    Write-Host "The existing virtual environment is being used..." -ForegroundColor Yellow
+} else {
+    Write-Host "Creating a new virtual environment venv..." -ForegroundColor Yellow
     python -m venv venv
-    venv\Scripts\python.exe -m pip install --upgrade pip
-    venv\Scripts\python.exe -m pip install -r requirements.txt
-)
+}
 
-if %errorlevel% equ 0 (
-    echo.
-    echo ===================================================
-    echo [SUCCESS] All dependencies installed successfully!
-    echo Launching run.bat automatically...
-    echo ===================================================
-    start "" run.bat
-) else (
-    echo.
-    echo [ERROR] An error occurred during library installation.
-)
+.\venv\Scripts\python.exe -m pip install --upgrade pip
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
 
-echo.
-pause
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "`n===================================================" -ForegroundColor Green
+    Write-Host "[SUCCESS] All dependencies installed successfully!" -ForegroundColor Green
+    Write-Host "Launching run.ps1 automatically..." -ForegroundColor Green
+    Write-Host "===================================================" -ForegroundColor Green
+    Start-Process powershell.exe -ArgumentList "-File .\run.ps1"
+} else {
+    Write-Host "`n[ERROR] An error occurred during library installation." -ForegroundColor Red
+}
+
+Read-Host "Press Enter to continue..."
