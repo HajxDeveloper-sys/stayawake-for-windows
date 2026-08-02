@@ -10,8 +10,4 @@ if (Test-Path "venv\Scripts\pythonw.exe") {
     Start-Process "pythonw.exe" -ArgumentList "main.py" -ErrorAction SilentlyContinue
 }
 
-if (Test-Path "install.ps1") {
-    Remove-Item "install.ps1" -Force -ErrorAction SilentlyContinue
-}
-
-Remove-Item -Path $PSCommandPath -Force -ErrorAction SilentlyContinue
+exit 0
