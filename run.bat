@@ -10,5 +10,4 @@ if exist "venv\Scripts\pythonw.exe" (
     start "" "pythonw.exe" main.py
 )
 
-if exist "install.bat" del /f /q "install.bat"
-(goto) 2>nul & del "%~f0"
+exit /b 0
