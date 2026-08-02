@@ -1,7 +1,5 @@
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -ErrorAction SilentlyContinue
 
-Write-Host "StayAwake PC Starting..." -ForegroundColor Green
-
 if (Test-Path "venv\Scripts\pythonw.exe") {
     Start-Process ".\venv\Scripts\pythonw.exe" -ArgumentList "main.py" -WindowStyle Hidden
 } elseif (Test-Path "venv\Scripts\python.exe") {
@@ -10,4 +8,4 @@ if (Test-Path "venv\Scripts\pythonw.exe") {
     Start-Process "pythonw.exe" -ArgumentList "main.py" -ErrorAction SilentlyContinue
 }
 
-exit 0
+[System.Environment]::Exit(0)
