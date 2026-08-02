@@ -271,9 +271,21 @@ class StayAwakeApp(tk.Tk):
 
         self._build_ui()
 
+        self._bring_to_foreground()
+
         self._update_timer_loop()
 
         self.protocol("WM_DELETE_WINDOW", self._on_closing)
+
+    def _bring_to_foreground(self):
+        try:
+            self.deiconify()
+            self.lift()
+            self.attributes('-topmost', True)
+            self.after_idle(self.attributes, '-topmost', False)
+            self.focus_force()
+        except Exception as err:
+            print(f"Bring to foreground warning: {err}")
 
     def _load_app_icon(self):
         try:
