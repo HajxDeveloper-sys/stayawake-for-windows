@@ -28,8 +28,9 @@ if %errorlevel% equ 0 (
     echo.
     echo ===================================================
     echo [SUCCESS] All dependencies installed successfully!
-    echo You can run the run.bat file to start the application.
+    echo Launching run.bat automatically...
     echo ===================================================
+    start "" run.bat
 ) else (
     echo.
     echo [ERROR] An error occurred during library installation.
