@@ -6,26 +6,26 @@ Write-Host "===================================================" -ForegroundColo
 Write-Host ""
 
 if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
-    Write-Host "[HATA] Python bulunamadı! Lütfen Python 3.12+ kurup PATH'e ekleyin." -ForegroundColor Red
+    Write-Host "[ERROR] Python not found! Please install Python 3.12+ and add it to the PATH." -ForegroundColor Red
     Read-Host "Devam etmek için Enter'a basın..."
     exit 1
 }
 
-Write-Host "Python tespit edildi. Sanal ortam (venv) kontrol ediliyor..." -ForegroundColor Yellow
+Write-Host "Python detected. Checking virtual environment (venv)..." -ForegroundColor Yellow
 
 if (-not (Test-Path "venv")) {
-    Write-Host "Sanal ortam (venv) oluşturuluyor..." -ForegroundColor Yellow
+    Write-Host "Creating virtual environment (venv)..." -ForegroundColor Yellow
     python -m venv venv
 }
 
-Write-Host "Bağımlılıklar venv içerisine kuruluyor..." -ForegroundColor Green
+Write-Host "Dependencies are being installed into the venv..." -ForegroundColor Green
 .\venv\Scripts\python.exe -m pip install --upgrade pip
 .\venv\Scripts\python.exe -m pip install -r requirements.txt
 
 if ($LASTEXITCODE -eq 0) {
-    Write-Host "`n[BAŞARILI] Kurulum tamamlandı! Uygulamayı çalıştırmak için .\run.ps1 dosyasını çalıştırabilirsiniz." -ForegroundColor Green
+    Write-Host "`n[SUCCESS] Installation complete! You can run the .\run.ps1 file to launch the application." -ForegroundColor Green
 } else {
-    Write-Host "`n[HATA] Kurulum sırasında bir hata oluştu." -ForegroundColor Red
+    Write-Host "`n[ERROR] An error occurred during installation." -ForegroundColor Red
 }
 
-Read-Host "Devam etmek için Enter'a basın..."
+Read-Host "Press Enter to continue..."
