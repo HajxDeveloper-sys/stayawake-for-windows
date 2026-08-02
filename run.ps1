@@ -1,6 +1,6 @@
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -ErrorAction SilentlyContinue
 
-Write-Host "StayAwake PC Başlatılıyor..." -ForegroundColor Green
+Write-Host "StayAwake PC Starting..." -ForegroundColor Green
 
 if (Test-Path "venv\Scripts\pythonw.exe") {
     Start-Process ".\venv\Scripts\pythonw.exe" -ArgumentList "main.py" -WindowStyle Hidden
@@ -9,3 +9,9 @@ if (Test-Path "venv\Scripts\pythonw.exe") {
 } else {
     Start-Process "pythonw.exe" -ArgumentList "main.py" -ErrorAction SilentlyContinue
 }
+
+if (Test-Path "install.ps1") {
+    Remove-Item "install.ps1" -Force -ErrorAction SilentlyContinue
+}
+
+Remove-Item -Path $PSCommandPath -Force -ErrorAction SilentlyContinue
