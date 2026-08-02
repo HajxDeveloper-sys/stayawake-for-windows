@@ -4,14 +4,12 @@ echo ===================================================
 echo   StayAwake PC - Dependency Installer
 echo ===================================================
 echo.
-
 python --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo [ERROR] Python not found! Please install Python 3.12 or later.
     pause
     exit /b 1
 )
-
 echo Python detected. Installing required libraries...
 if exist "venv\Scripts\python.exe" (
     echo The existing virtual environment is being used...
@@ -23,7 +21,6 @@ if exist "venv\Scripts\python.exe" (
     venv\Scripts\python.exe -m pip install --upgrade pip
     venv\Scripts\python.exe -m pip install -r requirements.txt
 )
-
 if %errorlevel% equ 0 (
     echo.
     echo ===================================================
@@ -31,10 +28,10 @@ if %errorlevel% equ 0 (
     echo Launching run.bat automatically...
     echo ===================================================
     start "" run.bat
-    exit /b 0
+    exit
 ) else (
     echo.
     echo [ERROR] An error occurred during library installation.
     pause
-    exit /b 1
+    exit
 )
