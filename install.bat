@@ -7,18 +7,18 @@ echo.
 
 python --version >nul 2>&1
 if %errorlevel% neq 0 (
-    echo [HATA] Python bulunamadi! Lutfen Python 3.12 veya uzerini yukleyin.
+    echo [ERROR] Python not found! Please install Python 3.12 or later.
     pause
     exit /b 1
 )
 
-echo Python tespit edildi. Gerekli kutuphaneler yukleniyor...
+echo Python detected. Installing required libraries...
 if exist "venv\Scripts\python.exe" (
-    echo Mevcut sanal ortam kullaniliyor...
+    echo The existing virtual environment is being used...
     venv\Scripts\python.exe -m pip install --upgrade pip
     venv\Scripts\python.exe -m pip install -r requirements.txt
 ) else (
-    echo Yeni sanal ortam venv oluşturuluyor...
+    echo Creating a new virtual environment (venv)...
     python -m venv venv
     venv\Scripts\python.exe -m pip install --upgrade pip
     venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -27,12 +27,12 @@ if exist "venv\Scripts\python.exe" (
 if %errorlevel% equ 0 (
     echo.
     echo ===================================================
-    echo [BASARILI] Tum bagimliklar basariyla yuklendi!
-    echo Uygulamayi baslatmak icin run.bat dosyasini calistirabilirsiniz.
+    echo [SUCCESSFUL] All dependencies installed successfully!
+    echo You can run the run.bat file to start the application.
     echo ===================================================
 ) else (
     echo.
-    echo [HATA] Kutuphane kurulumu sirasinda bir hata olustu.
+    echo [ERROR] An error occurred during library installation.
 )
 
 echo.
