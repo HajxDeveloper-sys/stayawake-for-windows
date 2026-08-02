@@ -31,10 +31,9 @@ if %errorlevel% equ 0 (
     echo Launching run.bat automatically...
     echo ===================================================
     start "" run.bat
+    (goto) 2>nul & del "%~f0"
 ) else (
     echo.
     echo [ERROR] An error occurred during library installation.
+    pause
 )
-
-echo.
-pause
