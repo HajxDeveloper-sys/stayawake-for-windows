@@ -1,7 +1,4 @@
 @echo off
-title StayAwake PC Launcher
-echo StayAwake PC Starting...
-
 if exist "venv\Scripts\pythonw.exe" (
     start "" "venv\Scripts\pythonw.exe" main.py
 ) else if exist "venv\Scripts\python.exe" (
@@ -9,5 +6,4 @@ if exist "venv\Scripts\pythonw.exe" (
 ) else (
     start "" "pythonw.exe" main.py
 )
-
-exit /b 0
+exit
