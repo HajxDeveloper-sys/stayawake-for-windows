@@ -1,7 +1,7 @@
 @echo off
 title StayAwake PC - Install Script
 echo ===================================================
-echo   StayAwake PC - Bagimlik Yukleyici Installer
+echo   StayAwake PC - Dependency Installer
 echo ===================================================
 echo.
 
@@ -18,7 +18,7 @@ if exist "venv\Scripts\python.exe" (
     venv\Scripts\python.exe -m pip install --upgrade pip
     venv\Scripts\python.exe -m pip install -r requirements.txt
 ) else (
-    echo Creating a new virtual environment (venv)...
+    echo Creating a new virtual environment venv...
     python -m venv venv
     venv\Scripts\python.exe -m pip install --upgrade pip
     venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -27,7 +27,7 @@ if exist "venv\Scripts\python.exe" (
 if %errorlevel% equ 0 (
     echo.
     echo ===================================================
-    echo [SUCCESSFUL] All dependencies installed successfully!
+    echo [SUCCESS] All dependencies installed successfully!
     echo You can run the run.bat file to start the application.
     echo ===================================================
 ) else (
