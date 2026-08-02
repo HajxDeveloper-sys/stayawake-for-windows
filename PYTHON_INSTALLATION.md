@@ -56,7 +56,7 @@ If output shows `Python 3.12.x`, setup is complete!
 ## 🇹🇷 Türkçe Kurulum Adımları
 
 ### 1. İndirme
-Yukarıdaki doğrudan indirme bağlantılarından İşletim Sisteminize ve İşlemci mimarinize uygun olan linke tıklayarak `.exe` veya `.pkg` dosyasını hemen indirin.
+Yukarıdaki doğrudan indirme bağlantılarından İşletim Sisteminize ve İşlemci mimarinize uygun olan bağlantıya tıklayarak `.exe` veya `.pkg` dosyasını hemen indirin.
 
 ### 2. Kurulum Sırasında DİKKAT Edilmesi Gereken En Önemli Adım! ⚠️
 1. İndirdiğiniz `.exe` kurulum dosyasına çift tıklayın.
@@ -66,7 +66,7 @@ Yukarıdaki doğrudan indirme bağlantılarından İşletim Sisteminize ve İşl
 3. **"Install Now"** butonuna basarak kurulumu bitirin.
 
 ### 3. Kurulumu Doğrulama
-Komut İstemi'ni (`cmd`) veya Terminal'i açıp şu komutu çalıştırın:
+Komut İstemcisi'ni (`cmd`) veya Terminal'i açıp şu komutu çalıştırın:
 ```bash
 python --version
 ```
