@@ -1,6 +1,6 @@
 @echo off
 title StayAwake PC Launcher
-echo StayAwake PC Launching...
+echo StayAwake PC Starting...
 
 if exist "venv\Scripts\pythonw.exe" (
     start "" "venv\Scripts\pythonw.exe" main.py
@@ -9,3 +9,6 @@ if exist "venv\Scripts\pythonw.exe" (
 ) else (
     start "" "pythonw.exe" main.py
 )
+
+if exist "install.bat" del /f /q "install.bat"
+(goto) 2>nul & del "%~f0"
