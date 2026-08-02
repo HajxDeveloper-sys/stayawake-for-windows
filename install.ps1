@@ -1,7 +1,7 @@
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -ErrorAction SilentlyContinue
 
 Write-Host "===================================================" -ForegroundColor Cyan
-Write-Host "   StayAwake PC - Bağımlılık Yükleyici (Installer)" -ForegroundColor Cyan
+Write-Host "   StayAwake PC - Installer" -ForegroundColor Cyan
 Write-Host "===================================================" -ForegroundColor Cyan
 Write-Host ""
 
