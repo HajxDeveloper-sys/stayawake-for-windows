@@ -176,41 +176,41 @@ class SleepPreventerEngine:
 LANGUAGES = {
     'TR': {
         'title': 'Uyanık Kal',
-        'subtitle': 'Windows Güç ve Ekran Yönetim Asistanı',
-        'status_active': '[AKTİF] Ekran ve Sistem Uyanık Tutuluyor',
-        'status_inactive': '[PASİF] Varsayılan Windows Güç Modu',
+        'subtitle': 'Windows Güç ve Ekran Yönetimi Asistanı',
+        'status_active': '[ETKİN] Ekran ve Sistem Uyanık Tutuluyor',
+        'status_inactive': '[DEVRE DIŞI] Varsayılan Windows Güç Modu',
         'timer_title': 'Kesintisiz Çalışma Süresi',
-        'btn_start': 'Uykuyu Engelle (Aktif Et)',
-        'btn_stop': 'Korumayı Durdur (Pasif Yap)',
+        'btn_start': 'Uykuyu Engelle (Etkinleştir)',
+        'btn_stop': 'Korumayı Durdur (Devre Dışı Bırak)',
         'btn_reset': '↺ Süreyi Sıfırla',
         'config_header': 'Koruma Ayarları',
         'chk_display': 'Ekranın Kapanmasını Engelle',
-        'chk_system': 'Sistemin Uykuna Girmesini Engelle',
+        'chk_system': 'Sistemin Uykuya Girmesini Engelle',
         'chk_heartbeat': 'Sessiz Arka Plan Sinyali (İmleç Kıpırdamaz)',
-        'footer': 'Uyanık Kal v1.1.0 • All Rights Reserved • Creator: Hasan Aras DEMİR',
+        'footer': 'Uyanık Kal v1.1.0 • Tüm Hakları Saklıdır • Geliştirici: Hasan Aras DEMİR',
         'exit_title': 'Çıkış Onayı',
-        'exit_msg': 'Uyanık Kal şu an aktif! Çıkarsanız bilgisayarınız varsayılan uyku moduna dönecektir.\n\nYine de çıkmak istiyor musunuz?',
+        'exit_msg': 'Uyanık Kal şu anda etkindir. Çıkarsanız bilgisayarınız varsayılan uyku moduna dönecektir.\n\nYine de çıkmak istiyor musunuz?',
         'already_running_title': 'Uyanık Kal Zaten Çalışıyor',
-        'already_running_msg': 'Uyanık Kal zaten çalışıyor!\n\nKaynak koruması ve güvenlik gereği aynı anda tek bir örnek (Single Instance) çalıştırılabilir.'
+        'already_running_msg': 'Uyanık Kal zaten çalışıyor!\n\nKaynak koruması ve güvenlik gereği aynı anda yalnızca tek bir oturum çalıştırılabilir.'
     },
     'EN': {
         'title': 'Stay Awake',
-        'subtitle': 'Windows Power & Display Keep-Awake Tool',
-        'status_active': '[ONLINE] System & Display Keep-Awake Active',
-        'status_inactive': '[OFFLINE] Default Windows Power Plan',
+        'subtitle': 'Windows Power & Display Management Assistant',
+        'status_active': '[ACTIVE] Display & System Kept Awake',
+        'status_inactive': '[INACTIVE] Default Windows Power Mode',
         'timer_title': 'Continuous Elapsed Runtime',
-        'btn_start': 'Enable Keep-Awake',
-        'btn_stop': 'Disable Keep-Awake',
+        'btn_start': 'Prevent Sleep (Enable)',
+        'btn_stop': 'Stop Protection (Disable)',
         'btn_reset': '↺ Reset Timer',
         'config_header': 'Protection Settings',
-        'chk_display': 'Prevent Display Standby & Turn-off',
-        'chk_system': 'Prevent System Sleep & Hibernation',
-        'chk_heartbeat': 'Silent Background Heartbeat (Cursor Unmoved)',
+        'chk_display': 'Prevent Display from Turning Off',
+        'chk_system': 'Prevent System from Entering Sleep Mode',
+        'chk_heartbeat': 'Silent Background Signal (Cursor Remains Still)',
         'footer': 'Stay Awake v1.1.0 • All Rights Reserved • Creator: Hasan Aras DEMİR',
         'exit_title': 'Confirm Exit',
-        'exit_msg': 'Stay Awake is currently ACTIVE.\n\nExiting will restore default Windows power settings. Are you sure you want to exit?',
+        'exit_msg': 'Stay Awake is currently active! Exiting will restore your computer to default sleep mode.\n\nDo you still want to exit?',
         'already_running_title': 'Stay Awake Already Running',
-        'already_running_msg': 'Stay Awake is already running!\n\nFor resource protection and security, only one single instance is allowed at a time.'
+        'already_running_msg': 'Stay Awake is already running!\n\nFor resource protection and security, only a single instance can run at a time.'
     }
 }
 
@@ -487,6 +487,7 @@ class StayAwakeApp(tk.Tk):
             bg=self.COLOR_CARD,
             activebackground=self.COLOR_CARD,
             activeforeground=self.COLOR_TEXT_PRIMARY,
+            disabledforeground=self.COLOR_TEXT_SECONDARY,
             selectcolor=self.COLOR_BG,
             bd=0,
             cursor="hand2"
@@ -552,6 +553,10 @@ class StayAwakeApp(tk.Tk):
             )
             self.status_card.config(highlightbackground=self.COLOR_ACTIVE)
 
+            self.chk_display.config(state=tk.DISABLED, cursor="arrow")
+            self.chk_system.config(state=tk.DISABLED, cursor="arrow")
+            self.chk_heartbeat.config(state=tk.DISABLED, cursor="arrow")
+
             if self.btn_reset:
                 self.btn_reset.config(
                     state=tk.DISABLED,
@@ -570,6 +575,10 @@ class StayAwakeApp(tk.Tk):
                 fg=self.COLOR_TEXT_SECONDARY
             )
             self.status_card.config(highlightbackground=self.COLOR_BORDER)
+
+            self.chk_display.config(state=tk.NORMAL, cursor="hand2")
+            self.chk_system.config(state=tk.NORMAL, cursor="hand2")
+            self.chk_heartbeat.config(state=tk.NORMAL, cursor="hand2")
 
             if self.btn_reset:
                 self.btn_reset.config(
