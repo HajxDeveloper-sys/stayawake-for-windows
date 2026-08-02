@@ -1,7 +1,3 @@
-# ==========================================
-# StayAwake PC - Configuration Settings
-# ==========================================
-
 [ui]
 # Show the "Reset Timer / Süreyi Sıfırla" button in GUI (true / false)
 show_reset_button = true
