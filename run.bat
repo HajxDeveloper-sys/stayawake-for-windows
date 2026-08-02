@@ -1,6 +1,6 @@
 @echo off
 title StayAwake PC Launcher
-echo StayAwake PC Başlatılıyor...
+echo StayAwake PC Launching...
 
 if exist "venv\Scripts\pythonw.exe" (
     start "" "venv\Scripts\pythonw.exe" main.py
