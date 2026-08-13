@@ -25,7 +25,7 @@
 - 🏗️ **[ARCHITECTURE.md](ARCHITECTURE.md)**: Win32 Power API integration, `SleepPreventer` architecture, and threading model.
 - ❓ **[FAQ.md](FAQ.md)**: Frequently asked questions and troubleshooting guide.
 - 🤝 **[CONTRIBUTING.md](CONTRIBUTING.md)**: Guidelines for contributing and developer workflow.
-- 📜 **[CHANGELOG.md](CHANGELOG.md)**: Version history and release notes (v1.1.0).
+- 📜 **[CHANGELOG.md](CHANGELOG.md)**: Version history and release notes (v1.2.0).
 - ⚖️ **[LICENSE](LICENSE)**: MIT License terms and copyright notice (Hasan Aras DEMİR).
 - 🤝 **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)**: Community standards and code of conduct.
 
@@ -47,6 +47,12 @@ graph TD
 
 ### 🌟 Key Features
 
+- **Timed focus sessions**: Choose 30 minutes, 1 hour, 2 hours, or unlimited protection.
+- **Automatic stop**: Scheduled sessions restore the normal Windows power state when their timer ends.
+- **Live remaining-time progress**: See elapsed time, time remaining, and the exact end time at a glance.
+- **Always on top**: Keep the compact controller visible while working.
+- **Quick control**: Press `F8` to start or stop protection instantly.
+
 - ⚡ **Windows Native Power API**: Communicates directly with the Windows Kernel (`SetThreadExecutionState`) to maintain active power states without moving the visible mouse cursor or interrupting user workflow.
 - 🔄 **Periodic Power Refresh**: A background thread continuously re-asserts the power state every 15 seconds to ensure system stability.
 - ⏱️ **Live Uptime Counter**: Displays a real-time counter (`00:00:00`) tracking how long the system has been kept active continuously.
@@ -65,8 +71,8 @@ graph TD
 
 1. Clone the repository or download as ZIP:
    ```bash
-   git clone https://github.com/HajxDeveloper-sys/stayawake-for-pc.git
-   cd stayawake-for-pc
+   git clone https://github.com/HajxDeveloper-sys/stayawake-for-windows.git
+   cd stayawake-for-windows
    ```
 2. **Installation**: Run `install.bat` or `install.ps1` to automatically install dependencies and configure the virtual environment (`venv`).
 3. **Run**: Run `run.bat` or `run.ps1` to launch the application.
@@ -109,7 +115,7 @@ stayawake-for-pc/
 │   └── icon.png                # PNG format application icon
 ├── .gitignore                  # Hardened Git ignore policy
 ├── ARCHITECTURE.md             # Technical architecture & Win32 API documentation
-├── CHANGELOG.md                # Version release history (v1.1.0)
+├── CHANGELOG.md                # Version release history (v1.2.0)
 ├── CODE_OF_CONDUCT.md          # Community code of conduct guidelines
 ├── CONTRIBUTING.md             # Developer contribution guide
 ├── FAQ.md                      # Frequently asked questions & troubleshooting guide

@@ -13,6 +13,8 @@ allow_resizable = true
 default_keep_display = true
 default_keep_system = true
 default_virtual_heartbeat = true
+default_session_minutes = 0
+default_always_on_top = false
 
 [security]
 # Enable Anti-DDoS rate limiting protection against event spamming & flood attacks

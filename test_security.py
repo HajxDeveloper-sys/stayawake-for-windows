@@ -1,5 +1,6 @@
 import sys
 import unittest
+import uuid
 from PIL import Image
 
 from security import (
@@ -10,6 +11,7 @@ from security import (
     ImageBombProtector,
     ConfigValidator
 )
+from main import format_duration
 
 class TestStayAwakeSecurity(unittest.TestCase):
 
@@ -65,11 +67,31 @@ class TestStayAwakeSecurity(unittest.TestCase):
         self.assertEqual(validated['security']['max_burst_capacity'], 100)
         self.assertEqual(validated['security']['refill_rate_per_sec'], 0.1)
 
+    def test_session_preferences_are_validated(self):
+        validated = ConfigValidator.validate_config({
+            'protection': {
+                'default_session_minutes': 60,
+                'default_always_on_top': True
+            }
+        })
+        self.assertEqual(validated['protection']['default_session_minutes'], 60)
+        self.assertTrue(validated['protection']['default_always_on_top'])
+
+        fallback = ConfigValidator.validate_config({
+            'protection': {'default_session_minutes': 999}
+        })
+        self.assertEqual(fallback['protection']['default_session_minutes'], 0)
+
+    def test_duration_formatting(self):
+        self.assertEqual(format_duration(0), "00:00:00")
+        self.assertEqual(format_duration(3661), "01:01:01")
+
     def test_single_instance_guard(self):
-        guard1 = SingleInstanceGuard()
+        mutex_name = f"Local\\StayAwakePC_Test_{uuid.uuid4()}"
+        guard1 = SingleInstanceGuard(mutex_name=mutex_name)
         self.assertTrue(guard1.acquire())
 
-        guard2 = SingleInstanceGuard()
+        guard2 = SingleInstanceGuard(mutex_name=mutex_name)
         self.assertFalse(guard2.acquire())
 
         guard1.release()

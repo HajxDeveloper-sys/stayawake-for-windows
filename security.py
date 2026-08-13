@@ -24,15 +24,16 @@ class SingleInstanceGuard:
     
     MUTEX_NAME = "Global\\StayAwakePC_SingleInstance_Mutex_v1"
 
-    def __init__(self):
+    def __init__(self, mutex_name: str | None = None):
         self.mutex_handle = None
         self.is_already_running = False
+        self.mutex_name = mutex_name or self.MUTEX_NAME
 
     def acquire(self) -> bool:
         if sys.platform == "win32":
             try:
                 ERROR_ALREADY_EXISTS = 183
-                self.mutex_handle = ctypes.windll.kernel32.CreateMutexW(None, False, self.MUTEX_NAME)
+                self.mutex_handle = ctypes.windll.kernel32.CreateMutexW(None, False, self.mutex_name)
                 last_error = ctypes.windll.kernel32.GetLastError()
                 if last_error == ERROR_ALREADY_EXISTS:
                     self.is_already_running = True
@@ -142,7 +143,9 @@ class ConfigValidator:
             'protection': {
                 'default_keep_display': True,
                 'default_keep_system': True,
-                'default_virtual_heartbeat': True
+                'default_virtual_heartbeat': True,
+                'default_session_minutes': 0,
+                'default_always_on_top': False
             },
             'security': {
                 'rate_limit_enabled': True,
@@ -174,6 +177,12 @@ class ConfigValidator:
                 validated['protection']['default_keep_system'] = prot['default_keep_system']
             if 'default_virtual_heartbeat' in prot and isinstance(prot['default_virtual_heartbeat'], bool):
                 validated['protection']['default_virtual_heartbeat'] = prot['default_virtual_heartbeat']
+            if 'default_session_minutes' in prot and isinstance(prot['default_session_minutes'], int):
+                allowed_durations = {0, 30, 60, 120}
+                if prot['default_session_minutes'] in allowed_durations:
+                    validated['protection']['default_session_minutes'] = prot['default_session_minutes']
+            if 'default_always_on_top' in prot and isinstance(prot['default_always_on_top'], bool):
+                validated['protection']['default_always_on_top'] = prot['default_always_on_top']
 
         sec = raw_config.get('security', {})
         if isinstance(sec, dict):

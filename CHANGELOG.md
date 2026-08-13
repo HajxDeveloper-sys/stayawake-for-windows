@@ -5,6 +5,21 @@ All notable changes to the **StayAwake PC** project will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-08-13
+
+### Added
+
+- Added 30-minute, 1-hour, 2-hour and unlimited protection sessions.
+- Added automatic session completion with Windows power-state restoration.
+- Added live remaining time, exact end time and session progress feedback.
+- Added an always-on-top preference and an `F8` start/stop shortcut.
+- Added validated session defaults to `config.toml`.
+
+### Changed
+
+- Refined the dark interface hierarchy, labels, controls and active/completed states.
+- Isolated mutex tests from a real running application instance for reliable local and CI runs.
+
 ---
 
 ## [1.1.1] - 2026-08-02
