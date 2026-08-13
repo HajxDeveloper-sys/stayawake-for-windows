@@ -3,7 +3,7 @@
 <p align="center">
   <img src="assets/icon.png" width="128" height="128" alt="Stay Awake Logo">
   <br>
-  <b>When enabled, keeps your computer continuously active and prevents it from turning off or entering sleep mode until manually disabled.</b>
+  <b>Keep Windows awake during long tasks, with clear status, timed sessions, and local-only preferences.</b>
   <br>
   <sub><b>Creator / Developer: Hasan Aras DEMİR</b> • Copyright © 2026 Hasan Aras DEMİR. All Rights Reserved.</sub>
 </p>
@@ -25,7 +25,7 @@
 - 🏗️ **[ARCHITECTURE.md](ARCHITECTURE.md)**: Win32 Power API integration, `SleepPreventer` architecture, and threading model.
 - ❓ **[FAQ.md](FAQ.md)**: Frequently asked questions and troubleshooting guide.
 - 🤝 **[CONTRIBUTING.md](CONTRIBUTING.md)**: Guidelines for contributing and developer workflow.
-- 📜 **[CHANGELOG.md](CHANGELOG.md)**: Version history and release notes (v1.1.0).
+- 📜 **[CHANGELOG.md](CHANGELOG.md)**: Version history and release notes (v1.2.0).
 - ⚖️ **[LICENSE](LICENSE)**: MIT License terms and copyright notice (Hasan Aras DEMİR).
 - 🤝 **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)**: Community standards and code of conduct.
 
@@ -33,7 +33,9 @@
 
 ## 📌 About The Project
 
-**Stay Awake** is an open-source Python 3.12 application designed to prevent Windows systems from entering sleep mode, turning off the display, or locking during long downloads, rendering tasks, server tests, or extended unattended operations.
+**Stay Awake** is an open-source Python 3.12 application designed to prevent Windows idle sleep and display timeout during long downloads, rendering tasks, server tests, or other extended work.
+
+> **Important:** Stay Awake uses Windows' `SetThreadExecutionState` API. It does not override a manual lock, administrator policy, critical-battery action, or laptop-lid setting.
 
 **Creator / Developer**: Hasan Aras DEMİR
 
@@ -50,8 +52,11 @@ graph TD
 - ⚡ **Windows Native Power API**: Communicates directly with the Windows Kernel (`SetThreadExecutionState`) to maintain active power states without moving the visible mouse cursor or interrupting user workflow.
 - 🔄 **Periodic Power Refresh**: A background thread continuously re-asserts the power state every 15 seconds to ensure system stability.
 - ⏱️ **Live Uptime Counter**: Displays a real-time counter (`00:00:00`) tracking how long the system has been kept active continuously.
+- 🕒 **Timed Sessions**: Choose Continuous, 30-minute, 1-hour, 2-hour, or custom sessions. The app shows the end time and automatically restores normal Windows power behavior when a timed session completes.
 - 🔘 **One-Click Control**: Easily start or stop protection at any time via simple toggle controls.
+- ✅ **Trustworthy Status**: The status card names exactly what is protected and reports a failed Windows power request instead of presenting a false “active” state.
 - 🎨 **Modern Cyber Dark UI**: Clean dark interface featuring custom high-resolution icons and live status indicators.
+- 💾 **Remembered Preferences**: Language, selected protection options, session duration, and window size are saved locally under the current user's AppData folder. Protection is never auto-resumed after a restart.
 - ⚙️ **Configurable Protection Settings**:
   - `Prevent Display Sleep`
   - `Prevent System Sleep`
@@ -65,8 +70,8 @@ graph TD
 
 1. Clone the repository or download as ZIP:
    ```bash
-   git clone https://github.com/HajxDeveloper-sys/stayawake-for-pc.git
-   cd stayawake-for-pc
+   git clone https://github.com/HajxDeveloper-sys/stayawake-for-windows.git
+   cd stayawake-for-windows
    ```
 2. **Installation**: Run `install.bat` or `install.ps1` to automatically install dependencies and configure the virtual environment (`venv`).
 3. **Run**: Run `run.bat` or `run.ps1` to launch the application.
@@ -94,7 +99,7 @@ python main.py
 ## 📁 Directory Structure
 
 ```text
-stayawake-for-pc/
+stayawake-for-windows/
 ├── .github/
 │   ├── ISSUE_TEMPLATE/
 │   │   ├── bug_report.md       # Bug report template
@@ -109,7 +114,7 @@ stayawake-for-pc/
 │   └── icon.png                # PNG format application icon
 ├── .gitignore                  # Hardened Git ignore policy
 ├── ARCHITECTURE.md             # Technical architecture & Win32 API documentation
-├── CHANGELOG.md                # Version release history (v1.1.0)
+├── CHANGELOG.md                # Version release history (v1.2.0)
 ├── CODE_OF_CONDUCT.md          # Community code of conduct guidelines
 ├── CONTRIBUTING.md             # Developer contribution guide
 ├── FAQ.md                      # Frequently asked questions & troubleshooting guide

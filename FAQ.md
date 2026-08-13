@@ -8,7 +8,7 @@
 ## 🔍 General Questions
 
 ### Q1: Bilgisayarım gerçekten hiç kapanmayacak mı?
-**Cevap**: Evet! **Uyanık Kal / Stay Awake** aktif edildiğinde Windows Güç Yöneticisine kesintisiz uyanık kalma sinyali iletir ve periyodik olarak sinyali yeniler. Bilgisayarınızın başında 10 dakika da olmasanız, 1.000.000 dakika da olmasanız bilgisayar kapanmaz, uykuya girmez ve ekranı kararmaz.
+**Cevap**: Aktif olduğunda **Uyanık Kal / Stay Awake**, Windows Güç Yöneticisine ekran zaman aşımını ve/veya boşta uykuya geçişi önleme isteği iletir ve bunu periyodik olarak yeniler. Manuel kilitleme, kurum politikaları, kritik pil davranışı ve kapak kapatma ayarları Windows tarafından yönetilmeye devam eder.
 
 ### Q2: Farem rastgele kıpırdayıp çalışmamı engeller mi?
 **Cevap**: Hayır! Uygulama varsayılan olarak fare imlecini gözle görülür şekilde hareket ettirmez. Windows Kernel seviyesinde güç sinyali gönderir. Arka plan heartbeat seçeneğinde dahi imleç yerinden milimetre oynamaz (`dx=0, dy=0`).

@@ -21,21 +21,27 @@ class Win32SecurityManager:
             return False
 
 class SingleInstanceGuard:
-    
+
     MUTEX_NAME = "Global\\StayAwakePC_SingleInstance_Mutex_v1"
 
-    def __init__(self):
+    def __init__(self, mutex_name: str | None = None):
+        """Create a guard, optionally with an isolated mutex name for tests."""
         self.mutex_handle = None
         self.is_already_running = False
+        self.mutex_name = mutex_name or self.MUTEX_NAME
 
     def acquire(self) -> bool:
         if sys.platform == "win32":
             try:
                 ERROR_ALREADY_EXISTS = 183
-                self.mutex_handle = ctypes.windll.kernel32.CreateMutexW(None, False, self.MUTEX_NAME)
+                self.mutex_handle = ctypes.windll.kernel32.CreateMutexW(None, False, self.mutex_name)
                 last_error = ctypes.windll.kernel32.GetLastError()
                 if last_error == ERROR_ALREADY_EXISTS:
                     self.is_already_running = True
+                    # CreateMutex returns a handle even when the mutex already
+                    # existed. Close our duplicate handle before returning.
+                    ctypes.windll.kernel32.CloseHandle(self.mutex_handle)
+                    self.mutex_handle = None
                     return False
                 return True
             except Exception:

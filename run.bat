@@ -1,9 +1,12 @@
 @echo off
+setlocal
+cd /d "%~dp0"
 if exist "venv\Scripts\pythonw.exe" (
-    start "" "venv\Scripts\pythonw.exe" main.py
+    start "Stay Awake" /D "%~dp0" "venv\Scripts\pythonw.exe" "main.py"
 ) else if exist "venv\Scripts\python.exe" (
-    start "" "venv\Scripts\python.exe" main.py
+    start "Stay Awake" /D "%~dp0" "venv\Scripts\python.exe" "main.py"
 ) else (
-    start "" "pythonw.exe" main.py
+    echo [ERROR] The app has not been set up yet. Run install.bat first.
+    pause
 )
-exit
+endlocal

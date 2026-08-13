@@ -1,5 +1,6 @@
 import sys
 import unittest
+import uuid
 from PIL import Image
 
 from security import (
@@ -66,10 +67,11 @@ class TestStayAwakeSecurity(unittest.TestCase):
         self.assertEqual(validated['security']['refill_rate_per_sec'], 0.1)
 
     def test_single_instance_guard(self):
-        guard1 = SingleInstanceGuard()
+        mutex_name = f"Local\\StayAwake_Test_{uuid.uuid4().hex}"
+        guard1 = SingleInstanceGuard(mutex_name=mutex_name)
         self.assertTrue(guard1.acquire())
 
-        guard2 = SingleInstanceGuard()
+        guard2 = SingleInstanceGuard(mutex_name=mutex_name)
         self.assertFalse(guard2.acquire())
 
         guard1.release()
