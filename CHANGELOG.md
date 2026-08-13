@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.0] - 2026-08-13
+
+### Added
+- **Timed protection sessions**: Continuous, 30-minute, 1-hour, 2-hour, and custom durations with a visible end time and automatic restoration of normal power behavior.
+- **Accurate status card**: Shows exactly whether display timeout, system sleep, or both are protected; failures are surfaced rather than displayed as an active state.
+- **Per-user preferences**: Language, selected options, session duration, and window size are now saved atomically under the user's AppData directory.
+- **Application tests**: Added deterministic coverage for session expiry, failed power requests, elapsed-time behavior, preference validation, and an isolated single-instance mutex.
+
+### Changed
+- **Reliable session lifecycle**: Uses monotonic timing and session-local cancellation events to prevent stale workers from affecting a subsequent session.
+- **Safer defaults**: The compatibility heartbeat is opt-in; configuration values for rate limiting and single-instance mode are now honored.
+- **Product UX**: Start/stop is available with `Ctrl+Enter`, settings explain when they are locked, and setup/run scripts resolve their own installation folder.
+
+### Fixed
+- **Single-instance test determinism**: Tests no longer conflict with a user's already-running Stay Awake window.
+- **Documentation accuracy**: Removed claims that the app can override manual locks, Windows policies, critical-battery behavior, or laptop-lid settings.
+
 ## [1.1.1] - 2026-08-02
 
 ### 🔧 Bug Fixes & Improvements

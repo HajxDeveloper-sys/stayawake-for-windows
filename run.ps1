@@ -1,11 +1,13 @@
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -ErrorAction SilentlyContinue
+Set-Location $PSScriptRoot
 
-if (Test-Path "venv\Scripts\pythonw.exe") {
-    Start-Process ".\venv\Scripts\pythonw.exe" -ArgumentList "main.py"
-} elseif (Test-Path "venv\Scripts\python.exe") {
-    Start-Process ".\venv\Scripts\python.exe" -ArgumentList "main.py"
+$pythonw = Join-Path $PSScriptRoot "venv\Scripts\pythonw.exe"
+$python = Join-Path $PSScriptRoot "venv\Scripts\python.exe"
+
+if (Test-Path $pythonw) {
+    Start-Process $pythonw -ArgumentList "main.py" -WorkingDirectory $PSScriptRoot -WindowStyle Hidden
+} elseif (Test-Path $python) {
+    Start-Process $python -ArgumentList "main.py" -WorkingDirectory $PSScriptRoot
 } else {
-    Start-Process "pythonw.exe" -ArgumentList "main.py" -ErrorAction SilentlyContinue
+    Add-Type -AssemblyName PresentationFramework
+    [System.Windows.MessageBox]::Show("Run install.ps1 or install.bat before starting the app.", "Stay Awake") | Out-Null
 }
-
-[System.Environment]::Exit(0)

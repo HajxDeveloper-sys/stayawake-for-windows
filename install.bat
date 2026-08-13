@@ -1,4 +1,6 @@
 @echo off
+setlocal
+cd /d "%~dp0"
 title StayAwake PC - Install Script
 echo ===================================================
 echo   StayAwake PC - Dependency Installer
@@ -27,11 +29,12 @@ if %errorlevel% equ 0 (
     echo [SUCCESS] All dependencies installed successfully!
     echo Launching run.bat automatically...
     echo ===================================================
-    start "" run.bat
-    exit
+    start "" /D "%~dp0" "%~dp0run.bat"
+    endlocal
+    exit /b 0
 ) else (
     echo.
     echo [ERROR] An error occurred during library installation.
     pause
-    exit
+    exit /b 1
 )

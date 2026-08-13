@@ -45,10 +45,10 @@ ES_AWAYMODE_REQUIRED= 0x00000040  # Away mode execution
   flags = ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED
   ctypes.windll.kernel32.SetThreadExecutionState(flags)
   ```
-  This registers the current thread with the Windows Power Manager. Windows will ignore idle timers for screen turn-off, system sleep, and automatic lock screens.
+  This registers the current thread with the Windows Power Manager. Windows will ignore idle timers for screen turn-off and system sleep. It does not bypass a manual lock, administrator policy, a closed laptop lid, or critical-battery handling.
 
 - **Continuous Re-assertion Daemon**:
-  To guarantee 100% sleep prevention reliability against corporate power policies or GPO resets, the background daemon thread periodically re-asserts `SetThreadExecutionState(flags)` every 15 seconds.
+  The background daemon periodically re-asserts `SetThreadExecutionState(flags)` every 15 seconds to keep the app's request current. Windows policies and hardware safety behavior always take precedence.
 
 - **Dormant State (Reset)**:
   ```python
@@ -60,7 +60,7 @@ ES_AWAYMODE_REQUIRED= 0x00000040  # Away mode execution
 
 ### 2. Background Heartbeat Thread
 
-To complement `SetThreadExecutionState` and guarantee immunity against aggressive third-party IT policies or sleep override software, a background daemon thread executes a zero-displacement mouse signal:
+For compatibility with selected environments, an opt-in background daemon can execute a zero-displacement mouse signal:
 
 ```python
 MOUSEEVENTF_MOVE = 0x0001
